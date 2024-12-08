@@ -1,0 +1,22 @@
+spring:
+  thymeleaf:
+    suffix: .html
+    prefix: classpath:/templates/
+  datasource:
+    url: jdbc:mysql://localhost:3306/minicampus
+    username: root
+    password: 1234
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: geunsu902@gmail.com
+    password: icmmxkrmucafdxwi
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
