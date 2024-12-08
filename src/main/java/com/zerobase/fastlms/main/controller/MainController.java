@@ -1,6 +1,5 @@
-package com.zerobase.fastlms;
+package com.zerobase.fastlms.main.controller;
 
-import com.zerobase.fastlms.components.MailComponents;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,12 +10,6 @@ public class MainController {
 
   @RequestMapping("/")
   public String index(){
-
-//    String email = "pks4877@naver.com";
-//    String subject = "제로베이스";
-//    String text = "<p>안녕하세요.</p><p>ㅎㅇ</p>";
-//
-//    mailComponents.sendMail(email,subject,text);
 
     return "index";
   }
