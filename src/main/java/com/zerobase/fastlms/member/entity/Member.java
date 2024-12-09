@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Member {
+public class Member implements MemberCode {
 
   @Id
   private String userId;
@@ -25,9 +25,15 @@ public class Member {
   private LocalDateTime regDt;
 
   private boolean emailAuthYn;
+
   private LocalDateTime emailAuthDt;
   private String emailAuthKey;
 
   private String resetPasswordKey;
   private LocalDateTime resetPasswordLimitDt;
+
+  private boolean adminYn;
+
+  private String userStatus;
+
 }

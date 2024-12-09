@@ -32,8 +32,10 @@ public class SecurityConfiguration {
 
     http
         .csrf(AbstractHttpConfigurer::disable)
-        .authorizeHttpRequests((auth)
-        -> auth.anyRequest().permitAll());
+        .authorizeHttpRequests((auth) -> auth
+            .requestMatchers("/**","/member/**").authenticated()
+            .requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
+            .anyRequest().permitAll());
     http.formLogin((formLogin)
             -> formLogin.loginPage("/member/login").failureHandler(getFailureHandler()).permitAll());
 
@@ -41,6 +43,9 @@ public class SecurityConfiguration {
         new AntPathRequestMatcher("/member/logout"))
         .logoutSuccessUrl("/")
         .invalidateHttpSession(true));
+
+    http.exceptionHandling((e)
+        -> e.accessDeniedPage("/error/denied"));
 
 
     http.userDetailsService(memberService);
