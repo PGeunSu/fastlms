@@ -3,6 +3,7 @@ package com.zerobase.fastlms.admin.controller;
 import com.zerobase.fastlms.admin.dto.MemberDto;
 import com.zerobase.fastlms.admin.model.MemberInput;
 import com.zerobase.fastlms.admin.model.MemberParam;
+import com.zerobase.fastlms.course.controller.BaseController;
 import com.zerobase.fastlms.member.entity.Member;
 import com.zerobase.fastlms.member.service.MemberService;
 import com.zerobase.fastlms.util.PagingUtil;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequiredArgsConstructor
-public class AdminMemberController {
+public class AdminMemberController extends BaseController {
 
   private final MemberService memberService;
 
@@ -33,13 +34,9 @@ public class AdminMemberController {
     }
     String queryString = parameter.getQueryString();
 
-    PagingUtil pagingUtil = new PagingUtil(
-        totalCount,
-        parameter.getPageSize(),
-        parameter.getPageIndex(),
-        queryString);
+    String pagerHtml = getPagerHtml(totalCount, parameter.getPageSize(), parameter.getPageIndex(), queryString);
 
-    model.addAttribute("pager", pagingUtil.pager());
+    model.addAttribute("pager", pagerHtml);
     model.addAttribute("list", members);
     model.addAttribute("totalCount", totalCount);
 
