@@ -5,6 +5,7 @@ import com.zerobase.fastlms.admin.entity.Category;
 import com.zerobase.fastlms.admin.model.CategoryInput;
 import com.zerobase.fastlms.admin.repository.CategoryRepository;
 import com.zerobase.fastlms.admin.service.CategoryService;
+import com.zerobase.fastlms.course.mapper.CategoryMapper;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,6 +21,7 @@ import org.springframework.util.CollectionUtils;
 public class CategoryServiceImpl implements CategoryService {
 
   private final CategoryRepository categoryRepository;
+  private final CategoryMapper categoryMapper;
 
   private final Sort getSortBySortValueDesc(){
     return Sort.by(Sort.Direction.DESC, "sortValue");
@@ -68,5 +70,11 @@ public class CategoryServiceImpl implements CategoryService {
     categoryRepository.deleteById(id);
 
     return true;
+  }
+
+  @Override
+  public List<CategoryDto> frontList(CategoryDto parameter) {
+
+    return categoryMapper.select(parameter);
   }
 }
