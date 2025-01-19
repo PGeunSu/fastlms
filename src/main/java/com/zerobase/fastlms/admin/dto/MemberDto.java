@@ -2,6 +2,7 @@ package com.zerobase.fastlms.admin.dto;
 
 import com.zerobase.fastlms.member.entity.Member;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,7 +20,9 @@ public class MemberDto {
   private String userName;
   private String phone;
   private String password;
+
   private LocalDateTime regDt;
+  private LocalDateTime udtDt;
 
   private boolean emailAuthYn;
   private LocalDateTime emailAuthDt;
@@ -31,6 +34,10 @@ public class MemberDto {
   private boolean adminYn;
   String userStatus;
 
+  private String zipCode;
+  private String addr;
+  private String addrDetail;
+
   long totalCount;
   long seq;
 
@@ -40,6 +47,7 @@ public class MemberDto {
         .userName(member.getUserName())
         .phone(member.getPhone())
         .regDt(member.getRegDt())
+        .udtDt(member.getUdtDt())
         .emailAuthYn(member.isEmailAuthYn())
         .emailAuthDt(member.getEmailAuthDt())
         .emailAuthKey(member.getEmailAuthKey())
@@ -47,8 +55,22 @@ public class MemberDto {
         .resetPasswordLimitDt(member.getResetPasswordLimitDt())
         .adminYn(member.isAdminYn())
         .userStatus(member.getUserStatus())
+        .zipCode(member.getZipCode())
+        .addr(member.getAddr())
+        .addrDetail((member.getAddrDetail()))
         .build();
 
+  }
+
+  public String getRegDtText(){
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm");
+
+    return regDt != null ? regDt.format(formatter) : "";
+  }
+  public String getUdtDtText(){
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm");
+
+    return udtDt != null ? udtDt.format(formatter) : "";
   }
 
 

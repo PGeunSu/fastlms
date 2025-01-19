@@ -23,6 +23,7 @@ public class Member implements MemberCode {
   private String phone;
   private String password;
   private LocalDateTime regDt;
+  private LocalDateTime udtDt;
 
   private boolean emailAuthYn;
 
@@ -35,5 +36,9 @@ public class Member implements MemberCode {
   private boolean adminYn;
 
   private String userStatus;
+
+  private String zipCode;
+  private String addr;
+  private String addrDetail;
 
 }
